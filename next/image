@@ -1,0 +1,7 @@
+import Image from 'next/image';
+
+const MyComponent = () => (
+  <div>
+    <Image src="/images/example.jpg" alt="Example" width={500} height={500} />
+  </div>
+);
