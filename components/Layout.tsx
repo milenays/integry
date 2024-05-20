@@ -13,8 +13,8 @@ import {
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="min-h-screen flex bg-black text-white">
-      <aside className="bg-gray-900 w-64 space-y-4 py-7 px-2 flex-shrink-0">
+    <div className="min-h-screen flex">
+      <aside className="bg-gray-900 text-white w-64 space-y-4 py-7 px-2 flex-shrink-0">
         <h1 className="text-2xl font-bold text-center mb-6">Integry Yönetim Sistemi</h1>
         <nav className="space-y-1">
           <Link href="/">
@@ -73,7 +73,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           </Link>
         </nav>
       </aside>
-      <main className="flex-1 p-6 overflow-y-auto">{children}</main>
+      <main className="flex-1 p-6 bg-black text-white overflow-y-auto">
+        {children}
+      </main>
     </div>
   );
 };
