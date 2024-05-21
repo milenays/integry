@@ -1,10 +1,22 @@
-"use client";
-
+'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const Sidebar = () => {
   const pathname = usePathname();
+
+  const links = [
+    { href: '/dashboard', label: 'Dashboard' },
+    { href: '/user-management', label: 'Kullanıcı Yönetimi' },
+    { href: '/integration-management', label: 'Entegrasyon Yönetimi' },
+    { href: '/product-management', label: 'Ürün Yönetimi' },
+    { href: '/order-management', label: 'Sipariş Yönetimi' },
+    { href: '/procurement-management', label: 'Tedarik Yönetimi' },
+    { href: '/warehouse-management', label: 'Depo Yönetimi' },
+    { href: '/settings', label: 'Ayarlar' },
+    { href: '/brand-management', label: 'Marka Yönetimi' },
+    { href: '/category-management', label: 'Kategori Yönetimi' }
+  ];
 
   return (
     <div className="h-screen bg-gray-900 text-white w-64 flex flex-col">
@@ -12,56 +24,13 @@ const Sidebar = () => {
         <h1 className="text-2xl font-bold">Integry</h1>
       </div>
       <nav className="flex-1 px-2 py-4 space-y-1">
-        <Link href="/dashboard">
-          <a className={`flex items-center px-2 py-2 text-sm font-medium rounded-md ${pathname === '/dashboard' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}>
-            <span className="ml-2">Dashboard</span>
-          </a>
-        </Link>
-        <Link href="/user-management">
-          <a className={`flex items-center px-2 py-2 text-sm font-medium rounded-md ${pathname === '/user-management' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}>
-            <span className="ml-2">Kullanıcı Yönetimi</span>
-          </a>
-        </Link>
-        <Link href="/integration-management">
-          <a className={`flex items-center px-2 py-2 text-sm font-medium rounded-md ${pathname === '/integration-management' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}>
-            <span className="ml-2">Entegrasyon Yönetimi</span>
-          </a>
-        </Link>
-        <Link href="/product-management">
-          <a className={`flex items-center px-2 py-2 text-sm font-medium rounded-md ${pathname === '/product-management' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}>
-            <span className="ml-2">Ürün Yönetimi</span>
-          </a>
-        </Link>
-        <Link href="/order-management">
-          <a className={`flex items-center px-2 py-2 text-sm font-medium rounded-md ${pathname === '/order-management' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}>
-            <span className="ml-2">Sipariş Yönetimi</span>
-          </a>
-        </Link>
-        <Link href="/procurement-management">
-          <a className={`flex items-center px-2 py-2 text-sm font-medium rounded-md ${pathname === '/procurement-management' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}>
-            <span className="ml-2">Tedarik Yönetimi</span>
-          </a>
-        </Link>
-        <Link href="/warehouse-management">
-          <a className={`flex items-center px-2 py-2 text-sm font-medium rounded-md ${pathname === '/warehouse-management' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}>
-            <span className="ml-2">Depo Yönetimi</span>
-          </a>
-        </Link>
-        <Link href="/settings">
-          <a className={`flex items-center px-2 py-2 text-sm font-medium rounded-md ${pathname === '/settings' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}>
-            <span className="ml-2">Ayarlar</span>
-          </a>
-        </Link>
-        <Link href="/brand-management">
-          <a className={`flex items-center px-2 py-2 text-sm font-medium rounded-md ${pathname === '/brand-management' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}>
-            <span className="ml-2">Marka Yönetimi</span>
-          </a>
-        </Link>
-        <Link href="/category-management">
-          <a className={`flex items-center px-2 py-2 text-sm font-medium rounded-md ${pathname === '/category-management' ? 'bg-gray-700' : 'hover:bg-gray-700'}`}>
-            <span className="ml-2">Kategori Yönetimi</span>
-          </a>
-        </Link>
+        {links.map((link) => (
+          <Link key={link.href} href={link.href} passHref legacyBehavior>
+            <a className={`block px-2 py-2 text-sm font-medium rounded-md ${pathname === link.href ? 'bg-gray-700' : 'hover:bg-gray-700'}`}>
+              <span className="ml-2">{link.label}</span>
+            </a>
+          </Link>
+        ))}
       </nav>
     </div>
   );
