@@ -1,11 +1,13 @@
-import React from 'react';
+import Sidebar from '../components/Sidebar';
+import '../styles/globals.css';
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+export default function Layout({ children }) {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100 text-gray-900">
-      <main className="flex-1 p-6">{children}</main>
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-1 p-8 bg-gray-100 min-h-screen">
+        {children}
+      </div>
     </div>
   );
-};
-
-export default Layout;
+}

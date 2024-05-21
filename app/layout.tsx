@@ -1,21 +1,14 @@
+import Sidebar from '../components/Sidebar';
 import '../styles/globals.css';
-import Layout from '../components/Layout';
 
-export const metadata = {
-  title: 'Integry',
-  description: 'A web-based integration system',
-};
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </head>
-      <body>
+
+ <div className="flex">
+      <Sidebar />
+      <div className="flex-1 p-8 bg-gray-100 min-h-screen">
         {children}
-      </body>
-    </html>
+      </div>
+    </div>
   );
 }
