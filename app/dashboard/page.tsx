@@ -1,21 +1,19 @@
+"use client";
+
 import React from 'react';
 
 const Dashboard = () => {
-  // Örnek verileri kullanabilirsiniz
-  const dailySales = "₺10,000";
-  const orderCount = 35;
-
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-100">
-      <h1 className="text-2xl font-bold my-4">Dashboard</h1>
-      <div className="flex flex-wrap justify-around w-full">
-        <div className="bg-white shadow-md rounded p-4 m-4 w-1/4">
+    <div className="min-h-screen flex flex-col bg-gray-100 text-gray-900 p-4">
+      <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="bg-white text-gray-800 shadow-md rounded p-4">
           <h2 className="text-xl font-semibold">Günlük Satış Cirosu</h2>
-          <p className="text-gray-600">{dailySales}</p>
+          <p className="text-gray-600">₺10,000</p>
         </div>
-        <div className="bg-white shadow-md rounded p-4 m-4 w-1/4">
+        <div className="bg-white text-gray-800 shadow-md rounded p-4">
           <h2 className="text-xl font-semibold">Sipariş Adeti</h2>
-          <p className="text-gray-600">{orderCount}</p>
+          <p className="text-gray-600">35</p>
         </div>
       </div>
     </div>

@@ -5,6 +5,6 @@
 @import 'react-toastify/dist/ReactToastify.css';
 
 body {
-  background-color: #000000; /* OLED Siyahı */
-  color: #ffffff; /* Beyaz metin */
+  background-color: #f7fafc; /* Açık gri arka plan */
+  color: #1a202c; /* Koyu gri metin */
 }

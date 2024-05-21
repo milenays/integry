@@ -9,49 +9,49 @@ const Home = () => {
         <Link href="/dashboard">
           <div className="bg-white shadow-md hover:shadow-lg transition-shadow rounded p-6 cursor-pointer">
             <h2 className="text-2xl font-bold text-gray-800">Dashboard</h2>
-            <p className="text-gray-600">Genel bakış</p>
+            <p className="text-gray-600">Genel Bakış</p>
           </div>
         </Link>
         <Link href="/user-management">
           <div className="bg-white shadow-md hover:shadow-lg transition-shadow rounded p-6 cursor-pointer">
             <h2 className="text-2xl font-bold text-gray-800">Kullanıcı Yönetimi</h2>
-            <p className="text-gray-600">Kullanıcı ekle, düzenle</p>
+            <p className="text-gray-600">Kullanıcı Ekle, Düzenle</p>
           </div>
         </Link>
         <Link href="/integration-management">
           <div className="bg-white shadow-md hover:shadow-lg transition-shadow rounded p-6 cursor-pointer">
             <h2 className="text-2xl font-bold text-gray-800">Entegrasyon Yönetimi</h2>
-            <p className="text-gray-600">API entegrasyonları</p>
+            <p className="text-gray-600">API Entegrasyonları</p>
           </div>
         </Link>
         <Link href="/product-management">
           <div className="bg-white shadow-md hover:shadow-lg transition-shadow rounded p-6 cursor-pointer">
             <h2 className="text-2xl font-bold text-gray-800">Ürün Yönetimi</h2>
-            <p className="text-gray-600">Ürün ekle, düzenle</p>
+            <p className="text-gray-600">Ürün Ekle, Düzenle</p>
           </div>
         </Link>
         <Link href="/order-management">
           <div className="bg-white shadow-md hover:shadow-lg transition-shadow rounded p-6 cursor-pointer">
             <h2 className="text-2xl font-bold text-gray-800">Sipariş Yönetimi</h2>
-            <p className="text-gray-600">Siparişlerinizi yönetin</p>
+            <p className="text-gray-600">Siparişlerinizi Yönetin</p>
           </div>
         </Link>
         <Link href="/procurement-management">
           <div className="bg-white shadow-md hover:shadow-lg transition-shadow rounded p-6 cursor-pointer">
             <h2 className="text-2xl font-bold text-gray-800">Tedarik Yönetimi</h2>
-            <p className="text-gray-600">Tedarik süreçleri</p>
+            <p className="text-gray-600">Tedarik Süreçleri</p>
           </div>
         </Link>
         <Link href="/warehouse-management">
           <div className="bg-white shadow-md hover:shadow-lg transition-shadow rounded p-6 cursor-pointer">
             <h2 className="text-2xl font-bold text-gray-800">Depo Yönetimi</h2>
-            <p className="text-gray-600">Depo koordinasyonu</p>
+            <p className="text-gray-600">Depo Koordinasyonu</p>
           </div>
         </Link>
         <Link href="/settings">
           <div className="bg-white shadow-md hover:shadow-lg transition-shadow rounded p-6 cursor-pointer">
             <h2 className="text-2xl font-bold text-gray-800">Ayarlar</h2>
-            <p className="text-gray-600">Sistem ayarları</p>
+            <p className="text-gray-600">Sistem Ayarları</p>
           </div>
         </Link>
       </div>
