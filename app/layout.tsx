@@ -1,13 +1,20 @@
-import Sidebar from '../components/Sidebar';
 import '../styles/globals.css';
+import Sidebar from '../components/Sidebar';
 
-export default function Layout({ children }) {
+export const metadata = {
+  title: 'Integry',
+  description: 'Integry Yönetim Sistemi'
+};
+
+export default function RootLayout({ children }) {
   return (
-    <div className="flex">
-      <Sidebar />
-      <div className="flex-1 p-8 bg-gray-100 min-h-screen">
-        {children}
-      </div>
-    </div>
+    <html lang="en">
+      <body className="flex">
+        <Sidebar />
+        <div className="flex-1 p-8 bg-gray-100 min-h-screen">
+          {children}
+        </div>
+      </body>
+    </html>
   );
 }
