@@ -1,17 +1,24 @@
 "use client";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const ProductManagement = () => {
-  const [products, setProducts] = useState([
-    { name: "asdf", category: "asdf", price: 123 },
-    { name: "kj", category: "kj", price: 78 },
-  ]);
+  const [products, setProducts] = useState([]);
   const [showAddProductForm, setShowAddProductForm] = useState(false);
 
-  const handleAddProduct = (newProduct) => {
-    setProducts([...products, newProduct]);
+  const fetchProducts = async () => {
+    const response = await axios.get('/api/products');
+    setProducts(response.data.data);
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const handleAddProduct = async (newProduct) => {
+    await axios.post('/api/products', newProduct);
+    fetchProducts();
     setShowAddProductForm(false);
   };
 
@@ -48,24 +55,47 @@ const ProductManagement = () => {
 };
 
 const AddProductForm = ({ onAddProduct }) => {
-  const [productName, setProductName] = useState('');
-  const [stockCode, setStockCode] = useState('');
-  const [barcode, setBarcode] = useState('');
-  const [category, setCategory] = useState('');
-  const [brand, setBrand] = useState('');
-  const [description, setDescription] = useState('');
-  const [desi, setDesi] = useState('');
-  const [stockQuantity, setStockQuantity] = useState('');
-  const [fakeStockQuantity, setFakeStockQuantity] = useState('');
+  const [brands, setBrands] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [form, setForm] = useState({
+    name: '',
+    stockCode: '',
+    barcode: '',
+    category: '',
+    brand: '',
+    description: '',
+    desi: '',
+    stock: '',
+    fakeStock: '',
+    criticalStock: '',
+    marketPrice: '',
+    purchasePrice: '',
+    shelfCode: '',
+    areaCode: '',
+  });
+
+  useEffect(() => {
+    fetchBrands();
+    fetchCategories();
+  }, []);
+
+  const fetchBrands = async () => {
+    const response = await axios.get('/api/brands');
+    setBrands(response.data.data);
+  };
+
+  const fetchCategories = async () => {
+    const response = await axios.get('/api/categories');
+    setCategories(response.data.data);
+  };
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newProduct = {
-      name: productName,
-      category,
-      price: stockQuantity,
-    };
-    onAddProduct(newProduct);
+    onAddProduct(form);
   };
 
   return (
@@ -74,8 +104,9 @@ const AddProductForm = ({ onAddProduct }) => {
         <label className="block text-gray-700">Ürün Adı (0/100):</label>
         <input
           type="text"
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
+          name="name"
+          value={form.name}
+          onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded mt-2"
           maxLength={150}
         />
@@ -84,8 +115,9 @@ const AddProductForm = ({ onAddProduct }) => {
         <label className="block text-gray-700">Ürün Stok Kodu:</label>
         <input
           type="text"
-          value={stockCode}
-          onChange={(e) => setStockCode(e.target.value)}
+          name="stockCode"
+          value={form.stockCode}
+          onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded mt-2"
         />
       </div>
@@ -93,40 +125,48 @@ const AddProductForm = ({ onAddProduct }) => {
         <label className="block text-gray-700">Ürün Barkodu:</label>
         <input
           type="text"
-          value={barcode}
-          onChange={(e) => setBarcode(e.target.value)}
+          name="barcode"
+          value={form.barcode}
+          onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded mt-2"
         />
       </div>
       <div className="mb-4">
         <label className="block text-gray-700">Ürün Kategorisi:</label>
         <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
+          name="category"
+          value={form.category}
+          onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded mt-2"
         >
-          {/*Kategoriler buraya çekilecek ve gösterilecek*/}
-          <option value="category1">Kategori 1</option>
-          <option value="category2">Kategori 2</option>
+          {categories.map((category) => (
+            <option key={category._id} value={category.name}>
+              {category.name}
+            </option>
+          ))}
         </select>
       </div>
       <div className="mb-4">
         <label className="block text-gray-700">Ürün Markası:</label>
         <select
-          value={brand}
-          onChange={(e) => setBrand(e.target.value)}
+          name="brand"
+          value={form.brand}
+          onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded mt-2"
         >
-          {/*Markalar buraya çekilecek ve gösterilecek*/}
-          <option value="brand1">Marka 1</option>
-          <option value="brand2">Marka 2</option>
+          {brands.map((brand) => (
+            <option key={brand._id} value={brand.name}>
+              {brand.name}
+            </option>
+          ))}
         </select>
       </div>
       <div className="mb-4">
         <label className="block text-gray-700">Ürün Açıklaması:</label>
         <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          name="description"
+          value={form.description}
+          onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded mt-2"
         ></textarea>
       </div>
@@ -134,8 +174,9 @@ const AddProductForm = ({ onAddProduct }) => {
         <label className="block text-gray-700">Ürün Desisi:</label>
         <input
           type="text"
-          value={desi}
-          onChange={(e) => setDesi(e.target.value)}
+          name="desi"
+          value={form.desi}
+          onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded mt-2"
         />
       </div>
@@ -143,8 +184,9 @@ const AddProductForm = ({ onAddProduct }) => {
         <label className="block text-gray-700">Ürün Stok Adeti:</label>
         <input
           type="text"
-          value={stockQuantity}
-          onChange={(e) => setStockQuantity(e.target.value)}
+          name="stock"
+          value={form.stock}
+          onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded mt-2"
         />
       </div>
@@ -152,8 +194,59 @@ const AddProductForm = ({ onAddProduct }) => {
         <label className="block text-gray-700">Ürün Fake Stok Adeti:</label>
         <input
           type="text"
-          value={fakeStockQuantity}
-          onChange={(e) => setFakeStockQuantity(e.target.value)}
+          name="fakeStock"
+          value={form.fakeStock}
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 rounded mt-2"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700">Ürün Kritik Stok Adeti:</label>
+        <input
+          type="text"
+          name="criticalStock"
+          value={form.criticalStock}
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 rounded mt-2"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700">Ürün Piyasa Satış Fiyatı:</label>
+        <input
+          type="text"
+          name="marketPrice"
+          value={form.marketPrice}
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 rounded mt-2"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700">Ürün Satış Fiyatı:</label>
+        <input
+          type="text"
+          name="purchasePrice"
+          value={form.purchasePrice}
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 rounded mt-2"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700">Depo Raf Kodu:</label>
+        <input
+          type="text"
+          name="shelfCode"
+          value={form.shelfCode}
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 rounded mt-2"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700">Depo Alan Kodu:</label>
+        <input
+          type="text"
+          name="areaCode"
+          value={form.areaCode}
+          onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded mt-2"
         />
       </div>

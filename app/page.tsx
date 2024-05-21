@@ -54,6 +54,18 @@ const Home = () => {
             <p className="text-gray-600">Sistem Ayarları</p>
           </div>
         </Link>
+        <Link href="/brand-management">
+          <div className="bg-white shadow-md hover:shadow-lg transition-shadow rounded p-6 cursor-pointer">
+            <h2 className="text-2xl font-bold text-gray-800">Marka Yönetimi</h2>
+            <p className="text-gray-600">Marka Ekle, Düzenle</p>
+          </div>
+        </Link>
+        <Link href="/category-management">
+          <div className="bg-white shadow-md hover:shadow-lg transition-shadow rounded p-6 cursor-pointer">
+            <h2 className="text-2xl font-bold text-gray-800">Kategori Yönetimi</h2>
+            <p className="text-gray-600">Kategori Ekle, Düzenle</p>
+          </div>
+        </Link>
       </div>
     </div>
   );
