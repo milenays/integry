@@ -19,14 +19,14 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="h-screen bg-gray-900 w-64 fixed">
+    <div className="h-screen bg-gray-900 w-64 fixed text-black">
       <div className="flex items-center justify-center h-20">
         <h1 className="text-2xl font-bold text-white">Integry</h1>
       </div>
       <nav className="flex-1 px-2 py-4 space-y-1">
         {links.map((link) => (
           <Link key={link.href} href={link.href} passHref legacyBehavior>
-            <a className={`block px-2 py-2 text-sm font-medium rounded-md ${pathname === link.href ? 'bg-gray-700 text-white' : 'hover:bg-gray-700'}`} style={{ color: pathname === link.href ? 'white' : 'black' }}>
+            <a className={`block px-2 py-2 text-sm font-medium rounded-md ${pathname === link.href ? 'bg-gray-700 text-white' : 'hover:bg-gray-700 text-black'}`}>
               <span className="ml-2">{link.label}</span>
             </a>
           </Link>
