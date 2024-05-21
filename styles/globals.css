@@ -1,9 +1,8 @@
-/* styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Ek CSS */
+/* Additional Custom Styles */
 .sidebar-link {
   @apply text-black hover:bg-gray-700;
 }

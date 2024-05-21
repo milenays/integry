@@ -19,9 +19,9 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="h-screen bg-gray-900 text-white w-64 flex flex-col">
+    <div className="h-screen bg-gray-900 text-white w-64 fixed">
       <div className="flex items-center justify-center h-20">
-        <h1 className="text-2xl font-bold">Integry</h1>
+        <h1 className="text-2xl font-bold text-white">Integry</h1>
       </div>
       <nav className="flex-1 px-2 py-4 space-y-1">
         {links.map((link) => (
